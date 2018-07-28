@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "selection_sort.h"
+#include "bubble_sort.h"
 
 void printArray(const int *array, int size)
 {
@@ -32,6 +33,5 @@ int main(void) {
 	sorted_array = bubbleSort(&data[0], 6);
 	printArray(sorted_array, 6);
 	free(sorted_array);
-
 	return 0;
 }
