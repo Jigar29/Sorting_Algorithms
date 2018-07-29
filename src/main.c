@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "selection_sort.h"
 #include "bubble_sort.h"
+#include "insertion_sort.h"
 
 void printArray(const int *array, int size)
 {
@@ -31,6 +32,13 @@ int main(void) {
 	printf("Performing the Bubble Sort:- \n");
 	printf("Output From Bubble Sort:- \n");
 	sorted_array = bubbleSort(&data[0], 6);
+	printArray(sorted_array, 6);
+	free(sorted_array);
+
+	/* Insertion Sort */
+	printf("Performing the Insertion Sort:- \n");
+	printf("Output From Insertion Sort:- \n");
+	sorted_array = insertionSort(&data[0], 6);
 	printArray(sorted_array, 6);
 	free(sorted_array);
 	return 0;
