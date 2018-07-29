@@ -4,6 +4,7 @@
 #include "bubble_sort.h"
 #include "insertion_sort.h"
 #include "merge_sort.h"
+#include "quick_sort.h"
 
 void printArray(const int *array, int size)
 {
@@ -16,7 +17,8 @@ void printArray(const int *array, int size)
 	printArray(array+1, size-1);
 }
 
-int main(void) {
+int main(void)
+{
 	const int data[8] = {5, 8, 3, 2, 1, 10, 0, 7};
 	int *sorted_array = 0;
 	printf("Unsorted Array \n");
@@ -50,6 +52,12 @@ int main(void) {
 	printArray(sorted_array, 8);
 	free(sorted_array);
 
+	/* Quick Sort */
+	printf("Performing the Quick Sort:- \n");
+	printf("Output From Quick Sort:- \n");
+	sorted_array = quickSort(&data[0], 8);
+	printArray(sorted_array, 8);
+	free(sorted_array);
 
 	return 0;
 }
