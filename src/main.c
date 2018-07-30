@@ -5,6 +5,7 @@
 #include "insertion_sort.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
+#include "counting_sort.h"
 
 void printArray(const int *array, int size)
 {
@@ -56,6 +57,13 @@ int main(void)
 	printf("Performing the Quick Sort:- \n");
 	printf("Output From Quick Sort:- \n");
 	sorted_array = quickSort(&data[0], 8);
+	printArray(sorted_array, 8);
+	free(sorted_array);
+
+	/* Counting Sort */
+	printf("Performing the Counting Sort:- \n");
+	printf("Output From Counting Sort:- \n");
+	sorted_array = countingSort(&data[0], 8, 10);
 	printArray(sorted_array, 8);
 	free(sorted_array);
 
