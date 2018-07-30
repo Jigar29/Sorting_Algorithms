@@ -20,7 +20,7 @@ void printArray(const int *array, int size)
 
 int main(void)
 {
-	const int data[8] = {5, 8, 3, 2, 1, 10, 0, 7};
+	const int data[8] = {4, 0, 3, 5, 2, 1, -1, 0};
 	int *sorted_array = 0;
 	printf("Unsorted Array \n");
 	printArray(&data[0], 8);

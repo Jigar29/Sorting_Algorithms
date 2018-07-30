@@ -10,52 +10,54 @@
 #include <stdio.h>
 #include "merge_sort.h"
 
-int* performSort(int *data, int size)
+#define MAX_SIZE 20
+int left[MAX_SIZE] = {0}, right[MAX_SIZE] = {0};
+
+void performSort(int *data, int size)
 {
-	//Base Condition
-	if(size == 1)
-		return data;
+	//base condition
+	if(size <= 1)
+		return;
 
-	int *left  = mergeSort(data, size/2);
-	int *right = mergeSort(data+ (size/2), size/2);
+	int mid = size/2;
+	performSort(data, mid);
+	performSort(data+mid, size-mid);
 
-	int right_count = 0, left_count = 0;
+	for(int i=0; i<size-mid; i++)
+	{
+		if(i<mid)
+			left[i] = data[i];
+		right[i] = data[i+mid];
+	}
 
+	int left_pos = 0, right_pos = 0;
 	for(int i=0; i<size; i++)
 	{
-		if((right_count <(size/2)) && (left_count <(size/2)))
+		if((left_pos < mid) && (right_pos < (size -mid)))
 		{
-			if(*left > *right)
+			if(left[left_pos] > right[right_pos])
 			{
-				data[i] = *right;
-				right++;
-				right_count++;
+				data[i] = right[right_pos];
+				right_pos++;
 			}
 			else
 			{
-				data[i] = *left;
-				left++;
-				left_count++;
+				data[i] = left[left_pos];
+				left_pos++;
 			}
 		}
-		else if(left_count >=(size/2))
+		else if(left_pos >= mid)
 		{
-			data[i] = *right;
-			right++;
-			right_count++;
+			data[i] = right[right_pos];
+			right_pos++;
 		}
-		else if(right_count >=(size/2))
+		else if(right_pos >= (size -mid))
 		{
-			data[i] = *left;
-			left++;
-			left_count++;
-		}
-		else
-		{
-			printf("Something Bad Happened");
+			data[i] = left[left_pos];
+			left_pos++;
 		}
 	}
-	return data;
+
 }
 
 int *mergeSort(const int *data, int size)
