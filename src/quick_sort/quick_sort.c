@@ -10,46 +10,48 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int partition(int *array, int size)
+void performQuickSort(int *a, int size)
 {
-	int pivot = array[size-1];
-	int start_index= 0;
-	int temp =0;
+	// already sorted array
+	// zero element
+	// one element
+	// 4 0 3 5 2 -1
+	// 0 3 5 2 -1 4
 
-	for(int i=0; i<(size-1); i++)
-	{
-		if(array[i] < pivot)
-		{
-			temp = array[start_index];
-			array[start_index] = array[i];
-			array[i] = temp;
-
-			start_index++;
-		}
-	}
-
-	temp = array[size -1];
-	array[size -1] = array[start_index];
-	array[start_index] = temp;
-	return start_index;
-}
-
-static void performQuickSort(int *array, int size)
-{
-	int index = partition(array, size);
-
-	//Base condition
-	if(size <= 1)
+	// base condition
+	if(size<=1)
 		return;
 
-	if(index != 0)
+	int pivot_pos = size-1, left_pos = -1;
+	//sorting
+	for(int i =0; i<pivot_pos; i++)
 	{
-		performQuickSort(array, index);
+		if((a[i] <= a[pivot_pos]) && (left_pos >= 0))
+		{
+			a[i] ^= a[left_pos];
+			a[left_pos] ^= a[i];
+			a[i] ^= a[left_pos];
+
+			left_pos++;
+		}
+		else if((a[i] > a[pivot_pos]) && (left_pos < 0)){
+			left_pos = i;
+		}
 	}
-	if(index < (size -1))
+	if(left_pos>=0)
 	{
-		performQuickSort(array+index+1, size-index-1);
+		a[left_pos] ^= a[pivot_pos];
+		a[pivot_pos]^= a[left_pos];
+		a[left_pos] ^= a[pivot_pos];
+
+		pivot_pos = left_pos;
 	}
+	// function calls
+	if(pivot_pos > 0)
+		performQuickSort(a, pivot_pos);
+	if(pivot_pos < (size -1))
+		performQuickSort(a + pivot_pos + 1, size - pivot_pos - 1);
+
 }
 
 int * quickSort(const int *data, int size)

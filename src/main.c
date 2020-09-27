@@ -4,7 +4,7 @@
 #include "bubble_sort.h"
 #include "insertion_sort.h"
 #include "merge_sort.h"
-#include "quick_sort.h"
+#include <quick_sort.h>
 #include "counting_sort.h"
 
 void printArray(const int *array, int size)
